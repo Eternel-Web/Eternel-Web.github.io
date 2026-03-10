@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Éternell – Parfum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #F7F4EF;
+      --warm-white: #FAF8F5;
+      --gold: #B89A6A;
+      --ink: #2c2c3a;
+      --muted: #8A8075;
+      --border: #E2DDD6;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: #fff;
+      color: var(--ink);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 0.82rem; color: var(--ink); text-decoration: none; letter-spacing: 0.05em; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-right { display: flex; gap: 18px; align-items: center; font-size: 0.75rem; color: var(--muted); }
+    .nav-right a { color: var(--muted); text-decoration: none; }
+    .nav-icon { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.6; vertical-align: middle; }
+
+    /* STORIES */
+    .stories {
+      display: flex; justify-content: center; gap: 36px;
+      padding: 24px 0 18px; background: #fff;
+    }
+    .story-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
+    .story-ring {
+      width: 74px; height: 74px; border-radius: 50%; padding: 3px;
+      background: linear-gradient(135deg, #e05580, #c9a45a, #e05580);
+    }
+    .story-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      border: 2px solid #fff; overflow: hidden;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .story-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .story-ph {
+      font-size: 0.52rem; letter-spacing: 0.08em;
+      color: var(--muted); text-align: center; padding: 4px;
+      line-height: 1.4;
+    }
+    .story-label { font-size: 0.65rem; color: var(--ink); letter-spacing: 0.03em; }
+
+    /* HERO */
+    .hero-banner {
+      position: relative; width: 100%; height: 420px; overflow: hidden;
+      background: linear-gradient(160deg, #ccdde8 0%, #dde8ef 35%, #eff0f5 60%, #f5f0ea 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding-top: 52px;
+    }
+    .hero-banner > img.hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+    }
+    .hero-text-wrap { position: relative; z-index: 1; text-align: center; }
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 400;
+      color: var(--ink); letter-spacing: 0.04em; line-height: 1;
+    }
+    .hero-tagline { font-size: clamp(0.85rem, 2vw, 1.1rem); color: var(--ink); font-weight: 300; margin-top: 8px; }
+    .hero-bottles {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 10px; align-items: flex-end; z-index: 1;
+    }
+    .hero-bottle {
+      width: 110px; height: 190px;
+      background: linear-gradient(180deg, rgba(220,205,180,0.55), rgba(195,178,150,0.35));
+      border: 1px solid rgba(184,154,106,0.25); border-radius: 6px 6px 3px 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; color: rgba(100,90,80,0.7); letter-spacing: 0.1em; text-align: center;
+    }
+    .hero-bottle.tall { height: 210px; }
+    /* Replace placeholders with: <img src="..." style="width:100%;height:100%;object-fit:cover;border-radius:6px 6px 3px 3px;"> */
+
+    /* LUXURY HEADING */
+    .luxury-heading { text-align: center; padding: 56px 24px 36px; }
+    .luxury-heading h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; margin-bottom: 10px; }
+    .luxury-heading p { font-size: 0.88rem; color: var(--muted); font-weight: 400; }
+
+    /* SPLIT SECTIONS */
+    .split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 0;
+      max-width: 1080px; margin: 0 auto 56px; padding: 0 40px;
+    }
+    .split.rev { direction: rtl; }
+    .split.rev > * { direction: ltr; }
+
+    .split-img {
+      border-radius: 12px; overflow: hidden;
+      aspect-ratio: 4/3; background: var(--cream);
+    }
+    .split-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .split-img-ph {
+      width: 100%; height: 100%; min-height: 260px;
+      background: linear-gradient(135deg, #ede5d8, #ddd4c6);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 0.08em; text-align: center;
+    }
+
+    .split-txt { padding: 36px 52px; }
+    .badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: #fff; background: var(--ink); padding: 4px 12px; margin-bottom: 14px;
+    }
+    .split-txt h2 {
+      font-family: 'Raleway', sans-serif; font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    .split-txt p { font-size: 0.86rem; color: var(--muted); line-height: 1.85; margin-bottom: 6px; font-weight: 400; }
+    .split-txt .spacer { margin-bottom: 22px; }
+
+    .btn-out {
+      display: inline-block; padding: 11px 26px;
+      border: 1.5px solid var(--ink); border-radius: 50px;
+      font-size: 0.76rem; font-weight: 400; letter-spacing: 0.08em;
+      color: var(--ink); text-decoration: none;
+      transition: background .25s, color .25s;
+    }
+    .btn-out:hover { background: var(--ink); color: #fff; }
+
+    /* DUEFTE */
+    .duefte {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 0;
+      max-width: 1080px; margin: 0 auto 56px; padding: 0 40px;
+    }
+    .duefte-img {
+      border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; background: var(--cream);
+    }
+    .duefte-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .duefte-img-ph {
+      width: 100%; height: 100%; min-height: 260px;
+      background: linear-gradient(135deg, #f0e8dc, #e0d8cc);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 0.08em; text-align: center;
+    }
+    .duefte-txt { padding: 36px 52px; }
+    .duefte-txt h2 { font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 600; margin-bottom: 14px; }
+    .duefte-txt p { font-size: 0.86rem; color: var(--muted); line-height: 1.85; font-weight: 400; }
+
+    /* DIVIDER */
+    .hr { max-width: 1080px; margin: 0 auto 40px; padding: 0 40px; }
+    .hr hr { border: none; border-top: 1px solid var(--border); }
+
+    /* PRODUCTS */
+    .products { max-width: 1080px; margin: 0 auto 80px; padding: 0 40px; }
+    .products h2 { font-size: 1.35rem; font-weight: 600; margin-bottom: 24px; }
+    .pgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 18px; }
+    .pgrid2 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+    .pcard { cursor: pointer; }
+    .pcard-img {
+      position: relative; aspect-ratio: 1;
+      border-radius: 8px; overflow: hidden;
+      background: var(--cream); margin-bottom: 10px;
+    }
+    .pcard-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pcard-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #f0ebe2, #e5ddd4);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.65rem; letter-spacing: 0.08em; text-align: center; padding: 8px;
+    }
+    .ptag {
+      position: absolute; top: 10px; left: 10px;
+      background: #1a1a1a; color: #fff;
+      font-size: 0.62rem; font-weight: 500; padding: 4px 10px; border-radius: 50px;
+    }
+    .pname { font-size: 0.8rem; font-weight: 500; text-align: center; margin-bottom: 6px; line-height: 1.4; }
+    .pprices { display: flex; gap: 8px; justify-content: center; align-items: center; }
+    .pold { font-size: 0.73rem; color: var(--muted); text-decoration: line-through; }
+    .pnew { font-size: 0.8rem; font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      background: #111; color: #fff;
+      padding: 36px 60px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .f-news { display: flex; flex-direction: column; gap: 12px; }
+    .f-news p { font-size: 0.84rem; font-weight: 500; letter-spacing: 0.04em; }
+    .f-email {
+      display: flex; align-items: center;
+      border: 1px solid rgba(255,255,255,0.25); border-radius: 4px;
+      overflow: hidden; width: 270px;
+    }
+    .f-email input {
+      flex: 1; background: transparent; border: none; outline: none;
+      padding: 10px 14px; color: #fff;
+      font-size: 0.76rem; font-family: 'Raleway', sans-serif;
+    }
+    .f-email input::placeholder { color: rgba(255,255,255,0.35); }
+    .f-email button {
+      background: transparent; border: none; color: rgba(255,255,255,0.5);
+      padding: 10px 14px; cursor: pointer; font-size: 1rem; transition: color .2s;
+    }
+    .f-email button:hover { color: #fff; }
+    .f-socials { display: flex; gap: 20px; align-items: center; }
+    .f-socials a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
+    .f-socials a:hover { color: #fff; }
+    .sicon { width: 22px; height: 22px; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .split, .duefte { grid-template-columns: 1fr; padding: 0 20px; }
+      .split.rev { direction: ltr; }
+      .split-txt, .duefte-txt { padding: 22px 0; }
+      .products { padding: 0 20px; }
+      .pgrid, .pgrid2 { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+      .hero-banner { height: 300px; padding-top: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ÉTERNELL</a>
+  <ul class="nav-links">
+    <li><a href="#">Über uns</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <span>Deutschland | EUR €</span>
+    <a href="#"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></a>
+    <a href="#"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    <a href="#"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></a>
+  </div>
+</nav>
+
+<!-- STORIES -->
+<div class="stories reveal">
+  <div class="story-item">
+    <div class="story-ring"><div class="story-inner">
+      <!-- <img src="BILD_EINZELN.jpg"> -->
+      <div class="story-ph">einzelne<br>Parfüms</div>
+    </div></div>
+    <span class="story-label">einzelne Parfüms</span>
+  </div>
+  <div class="story-item">
+    <div class="story-ring"><div class="story-inner">
+      <!-- <img src="BILD_PROBEN.jpg"> -->
+      <div class="story-ph">Proben-<br>Set</div>
+    </div></div>
+    <span class="story-label">Proben-Set</span>
+  </div>
+  <div class="story-item">
+    <div class="story-ring"><div class="story-inner">
+      <!-- <img src="BILD_BUNDLE.jpg"> -->
+      <div class="story-ph">Bundle</div>
+    </div></div>
+    <span class="story-label">Bundle</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-banner">
+  <!-- Hintergrundbild: <img class="hero-bg" src="HERO_HINTERGRUND.jpg" alt=""> -->
+  <div class="hero-text-wrap">
+    <div class="hero-brand">Éternell</div>
+    <div class="hero-tagline">~The best way to smell~</div>
+  </div>
+  <div class="hero-bottles">
+    <!-- Ersetze die Platzhalter mit echten Bildern -->
+    <div class="hero-bottle">Peach<br>Cloud</div>
+    <div class="hero-bottle tall">Cerisé</div>
+    <div class="hero-bottle">Velura</div>
+  </div>
+</div>
+
+<!-- HEADING -->
+<div class="luxury-heading reveal">
+  <h2>Luxury Parfum – Éternell</h2>
+  <p>Willkommen bei ÉTERNELL – Überall wie zuhause fühlen.</p>
+</div>
+
+<!-- PROBENSET -->
+<div class="split reveal">
+  <div class="split-img">
+    <img src="Probenset.png" alt="Éternell Probenset" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="split-txt">
+    <span class="badge">Neu</span>
+    <h2>Probenset –<br>Jetzt Neu</h2>
+    <p>Für ALLE die erstmal testen wollen, ab jetzt 3x 5ml für NUR 15€. Selbe Duftqualität (30% Duftölanteil), 8–12h riechbar. Alle drei Éternell Düfte auf einmal testen.</p>
+    <div class="spacer"></div>
+    <a href="#" class="btn-out">zum Proben-Set</a>
+  </div>
+</div>
+
+<!-- BUNDLE -->
+<div class="split rev reveal">
+  <div class="split-img">
+    <img src="Bundel.png" alt="Éternell Bundle" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="split-txt">
+    <h2>Warum das<br>Bundle?</h2>
+    <p>Du erhältst 1 Parfüm gratis!!!</p>
+    <p>+ Versandkostenfrei.</p>
+    <div class="spacer"></div>
+    <a href="#" class="btn-out">Zum Bundle</a>
+  </div>
+</div>
+
+<!-- DUEFTE -->
+<div class="duefte reveal">
+  <div class="duefte-img">
+    <img src="Düfte.png" alt="Éternell Düfte" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="duefte-txt">
+    <h2>Éternell-Düfte</h2>
+    <p>Unsere Parfüms werden in Deutschland hergestellt. Die Duftöle lassen wir aus Italien einliefern um euch best mögliche Qualität zu bieten.</p>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="hr"><hr></div>
+
+<!-- PRODUCTS -->
+<div class="products reveal">
+  <h2>Könnte dir Gefallen</h2>
+  <div class="pgrid">
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <img src="Bundel.png" alt="Éternell Bundle" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="ptag">Ausverkauft</span>
+      </div>
+      <div class="pname">ÉTERNEL UNISEX Bundle – 3×50 ml Extrait de Parfum</div>
+      <div class="pprices"><span class="pold">€149,97 EUR</span><span class="pnew">€99,99 EUR</span></div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <img src="Cerisé.png" alt="Eternell Cerisé" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="ptag">Sale</span>
+      </div>
+      <div class="pname">Eternell – Cerisé</div>
+      <div class="pprices"><span class="pold">€49,99 EUR</span><span class="pnew">€39,99 EUR</span></div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <img src="Peach.png" alt="Eternell Peach Cloud" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="ptag">Ausverkauft</span>
+      </div>
+      <div class="pname">Eternell – Peach Cloud</div>
+      <div class="pprices"><span class="pold">€49,99 EUR</span><span class="pnew">€39,99 EUR</span></div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <img src="Velura.png" alt="Eternell Velura" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="ptag">Sale</span>
+      </div>
+      <div class="pname">Eternell – Velura</div>
+      <div class="pprices"><span class="pold">€49,99 EUR</span><span class="pnew">€39,99 EUR</span></div>
+    </div>
+
+  </div>
+  <div class="pgrid2">
+    <div class="pcard">
+      <div class="pcard-img">
+        <img src="Probenset.png" alt="Éternell Probenset" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <span class="ptag">Sale</span>
+      </div>
+      <div class="pname">ÉTERNELL Parfüm Proben-Set (3 × 5 ml)</div>
+      <div class="pprices"><span class="pold">€14,99 EUR</span><span class="pnew">€12,99 EUR</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-news">
+    <p>10% Code wenn du Abonnierst!</p>
+    <div class="f-email">
+      <input type="email" placeholder="E-Mail">
+      <button>→</button>
+    </div>
+  </div>
+  <div class="f-socials">
+    <a href="#" title="Instagram">
+      <svg class="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://www.tiktok.com/@parfum.eternell" target="_blank" rel="noopener" title="TikTok">
+      <svg class="sicon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
